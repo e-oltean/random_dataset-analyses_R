@@ -1,0 +1,33 @@
+
+# westart by analysing the suitability level  of data. 
+#The fist test we use is Crohnbach alpha test, which measures 
+# the internal consistency and reliability of the scales used.
+
+
+# generate non-normal data
+
+x=sample(1:100, 100, replace=TRUE)
+y=sample(1:100, 100, replace=TRUE)
+z= sample(1:100, 100, replace=TRUE)
+w=sample(1:100, 100, replace=TRUE) + x + y + z
+dfr=data.frame(x,y,z,w)
+
+# instal packages for Crohnbach alpha test
+install.packages('ltm')
+library(ltm)
+
+# calculate Cronbach alpha test for non-normal data
+cronbach.alpha(dfr)
+
+# generate normal data
+
+x1=rnorm(100, mean = 50, sd = 200)
+y1=rnorm(100, mean = 50, sd = 200)
+z1= rnorm(100, mean = 50, sd = 200)
+w1=rnorm(100, mean = 50, sd = 200) + x1 + y1 + z1
+dfr_nrm=data.frame(x1,y1,z1,w1)
+
+# calculate Cronbach alpha test for normal data
+cronbach.alpha(dfr_nrm)
+
+# result of or more than 0.6 – 0.8 indicates good reliability
