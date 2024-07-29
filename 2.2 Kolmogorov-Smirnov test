@@ -1,0 +1,18 @@
+# Kolmogorov-Smirnov test of normality
+# in addition to Shapiri-Wilk test, we uae
+# KS test to test normality in order to make 
+# a choice with regard to type of tests
+# (parametric or non-parametric)
+
+# generate normal data
+
+x=rnorm(100, mean = 50, sd = 200)
+y=rnorm(100, mean = 50, sd = 200)
+z= rnorm(100, mean = 50, sd = 200)
+w=rnorm(100, mean = 50, sd = 200) + x + y + z
+dfr=data.frame(x,y,z,w)
+
+# Kolmogorov-Smirnov test
+ks.test(x, w)
+ks.test(y, w)
+ks.test(z, w)
