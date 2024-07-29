@@ -1,0 +1,26 @@
+# Jarque-Bera test of normality
+# in addition to Shapiri-Wilk and 
+# Kolmogorov-Smirnov test, we uae
+# Jarque-Bera test to test normality 
+# in order to make # a choice with
+# regard to type of tests
+# (parametric or non-parametric)
+# Jarque-Bera test, unlike the 
+# KS and SW tests, are preferred 
+# by econometricians
+
+# generate normal data
+
+x=rnorm(100, mean = 50, sd = 200)
+y=rnorm(100, mean = 50, sd = 200)
+z= rnorm(100, mean = 50, sd = 200)
+w=rnorm(100, mean = 50, sd = 200) + x + y + z
+dfr=data.frame(x,y,z,w)
+
+# install Jarque-Bera test
+install.packages('tseries')
+library(tseries)
+
+# calculation Jarque-Bera test
+jarque.bera.test(w)
+
