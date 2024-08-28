@@ -1,0 +1,8 @@
+x=sample(1:100, 100, replace=TRUE)
+y=sample(1:100, 100, replace=TRUE)
+z= sample(1:100, 100, replace=TRUE)
+w=sample(1:100, 100, replace=TRUE) + x + y + z
+
+qqnorm(w, pch = 1, frame = FALSE)
+qqline(w, col = "steelblue", lwd = 2)
+
