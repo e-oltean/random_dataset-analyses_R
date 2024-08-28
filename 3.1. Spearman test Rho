@@ -1,0 +1,6 @@
+x=sample(1:100, 100, replace=TRUE)
+y=sample(1:100, 100, replace=TRUE)
+z= sample(1:100, 100, replace=TRUE)
+w=sample(1:100, 100, replace=TRUE) + x + y + z
+
+cor_spearman=cor.test(x, w, method = 'spearman')
