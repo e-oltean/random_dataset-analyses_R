@@ -1,0 +1,6 @@
+x=rnorm(100, mean = 50, sd = 200)
+y=rnorm(100, mean = 50, sd = 200)
+z= rnorm(100, mean = 50, sd = 200)
+w=rnorm(100, mean = 50, sd = 200) + x + y + z
+
+cor_pearson=cor.test(x, y, method = c("pearson"))
