@@ -1,0 +1,10 @@
+install.packages("ppcor")
+library(ppcor)
+
+x=rnorm(100, mean = 50, sd = 200)
+y=rnorm(100, mean = 50, sd = 200)
+z= rnorm(100, mean = 50, sd = 200)
+w=rnorm(100, mean = 50, sd = 200) + x + y + z
+
+partial_corr_result=pcor.test(x, y, w)
+print(partial_corr_result)
