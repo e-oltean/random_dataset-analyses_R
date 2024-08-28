@@ -1,0 +1,17 @@
+install.packages('ISLR')
+library(ISLR)
+data <- ISLR::Default
+summary(data)
+#make this example reproducible
+set.seed(1)
+
+#Use 70% of dataset as training set and remaining 30% as testing set
+sample=sample(c(TRUE, FALSE), nrow(data), replace=TRUE, prob=c(0.7,0.3))
+train=data[sample, ]
+test=data[!sample, ]  
+
+#fit logistic regression model
+model=glm(default~student+balance+income, family="binomial", data=train)
+
+#view model summary
+summary(model)
