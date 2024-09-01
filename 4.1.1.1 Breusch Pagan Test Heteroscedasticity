@@ -1,0 +1,14 @@
+'Constant variance is often called homoscedasticity. Conversely, non-constant variance is called heteroscedasticity'
+'There are many tests for constant variance, but here we will present one, the Breusch-Pagan Test.'
+'it is used to verify if the (one of the) assumptions of regression are met'
+
+install.packages('lmtest')
+library(lmtest)
+
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+
+model=lm(w~x+y+z)
+bptest(model)
