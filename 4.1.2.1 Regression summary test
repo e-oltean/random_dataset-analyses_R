@@ -1,0 +1,21 @@
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+
+model=lm(w~x+y+z)
+
+'compute R squared'
+summary(model)$r.squared
+
+'compute Residual Squared Sum'
+summary(model)$rss
+
+'compute R adjunct'
+summary(model)$r.adjunct
+
+'compute sigma'
+summary(model)$sigma
+
+'compute p-value'
+summary(model)$p.value
