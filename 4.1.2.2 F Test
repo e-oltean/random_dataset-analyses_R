@@ -1,0 +1,7 @@
+
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+
+var.test(x, w, alternative = "two.sided")
