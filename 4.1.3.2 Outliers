@@ -1,0 +1,20 @@
+'Often a small number of data points can  have an extremely large influence on a regression,
+sometimes so much so that the regression assumptions are violated as a result of these points.'
+
+'Outliers are points which do not fit the model well. 
+They may or may not have a large affect on the model. 
+To identify outliers, we will look for observations with large residuals.'
+
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+
+model=lm(w~x+y+z)
+
+otl_model=cooks.distance(model)
+sum(otl_model>4/length(otl_model))
+
+'points which are outliers' 
+large_otl_model=otl_model>4/length(otl_model)
+otl_model[large_otl_model]
