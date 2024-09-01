@@ -1,0 +1,21 @@
+
+'Often a small number of data points can  have an extremely large influence on a regression,
+sometimes so much so that the regression assumptions are violated as a result of these points.'
+
+'As we have now seen in the three plots, some outliers only change the regression 
+a small amount (plot one) and some outliers have a large effect on the regression (plot three).
+Observations that fall into the latter category, points with (some combination of) 
+high leverage and large residual, we will call influential.'
+
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+
+model=lm(w~x+y+z)
+
+cooks.distance(model)>4/length(cooks.distance(model))
+
+  
+  
+  
