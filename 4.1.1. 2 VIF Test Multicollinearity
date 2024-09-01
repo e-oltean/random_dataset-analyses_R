@@ -1,0 +1,14 @@
+'Collinearity is often called multicollinearity, since it is a phenomenon that really only occurs during multiple regression.
+the variance inflation factor. The variance inflation factor quantifies the effect of collinearity on the variance of our regression estimates.'
+'it is used to verify if the (one of the) assumptions of regression are met'
+
+install.packages('faraway')
+library(faraway)
+
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+
+model=lm(w~x+y+z)
+vif(model)
