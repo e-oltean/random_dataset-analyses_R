@@ -1,0 +1,14 @@
+"A normal probability plot, also known as a quantile-quantile (Q-Q) plot, 
+is a graphical method for comparing a set of data to a normal distribution. 
+If the data follows a normal distribution, the points in the plot will fall 
+approximately along a straight line."
+
+
+install.packages('ggplot2')
+library(ggplot2)
+
+# Create a normal probability plot of the 
+# mpg variable in the mtcars dataset
+ggplot(mtcars, aes(sample = mpg)) +
+  stat_qq() +
+  ggtitle("Normal Probability Plot of MPG in the mtcars Dataset")
