@@ -1,0 +1,28 @@
+##The second step in the factor analysis is the factor extraction 
+##which is the smallest number of factors that can be used to best 
+##represent the relations among variables. The most commonly used 
+##approiach is the PCA.'
+
+##Horn's parallel analysis involves comparing the size of the  eigenvalues 
+##with those randomly generated datasets. We keep only eigenvalues that exceed
+##the corresponding values from random dataset. This approach to identifying 
+##the correct number of componenets. This is used for reporing in journals as a must. 
+
+'generate normal dataset'
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+data=data.frame(w,x,y,z)
+
+install.packages("paran", dependencies = TRUE)
+library(paran)
+
+data_paran <- paran(data, seed = 1)
+
+# Conduct a parallel analysis with fa.parallel().
+# install.packages("psych", dependencies = TRUE)
+library(psych)
+
+fa_parallel_data <- fa.parallel(data)
+print(fa_parallel_data)
