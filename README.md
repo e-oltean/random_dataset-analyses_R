@@ -5,7 +5,7 @@ Based on the same line of reasoning, we employ R in order to get the same result
 
 We aim in this project to adress a set of data by justifying the choices for our statistical tests depending on the results of the previous tests. We follow a certain way and order based on a logical manner. 
 
-We aim to investigate on one hand the relationship between variables using correlation (in the third part) and different types of regression(in the fourth part). On the other hand, we want to investigate the relationships between different groups.
-
 In the first part, we adress the topic of suitability of data.
-In the second part, we approach the caracteristics of the data in order to explore if the data comply with the assumptions for statistical techniques. Mainly, we explore normality, linearity, and independence of data. Based on these finding with regard to data characteristics, we go parametric and non-parametric tests. To be continued....
+In the second part, we approach the caracteristics of the data in order to explore if the data comply with the assumptions for statistical techniques. Mainly, we explore normality, linearity, and independence of data. Based on these finding with regard to data characteristics, we go parametric and non-parametric tests. 
+
+Based on the results from tests contained the second part, we decide if we go for parametric tests (part 3 and 4) or non-parametric test (from part 6 onwards). Using parametric test (in parts 3 and 4), we aim to investigate on one hand the relationship between variables using correlation (in the third part) and different types of regression(in the fourth part). On the other hand, we want to investigate the relationships between different groups.To be continued....
