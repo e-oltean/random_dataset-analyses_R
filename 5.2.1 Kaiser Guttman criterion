@@ -1,0 +1,29 @@
+'The sectnd step in the factor analysis is the factor extraction which is the 
+smallest number of factors that can be used to best represent the relations among 
+variables. The most commonly used approiach is the PCA.'
+
+'Kaiser-Guttman criterion or eigenvalue rule is one technique. Using this rule, 
+only factors with an eigenvalue of 1.0 or more are kept for further investigation. 
+The eigenvalue of a factor represents the amount of total variance explained by that factor.'
+
+'generate normal dataset'
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+data=data.frame(w,x,y,z)
+
+##first method
+install.packages("FactoMineR", dependencies = TRUE)
+library(FactoMineR)
+
+# Conduct a PCA on the  dataset
+pca_data <- PCA(data)
+
+# Apply the Kaiser-Guttman rule
+summary(pca_data, ncp = 4)
+
+##second method
+
+KGC <- eigen(cor(data)) # get eigenvalues
+KGC$values
