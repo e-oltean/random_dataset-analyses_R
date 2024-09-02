@@ -1,0 +1,43 @@
+##The second step in the factor analysis is the factor extraction 
+##which is the smallest number of factors that can be used to best 
+##represent the relations among variables. The most commonly used 
+##approiach is the PCA.'
+
+##Catell's 'scree test plots each of the eigenvalues of the factors. 
+##Catell recommends using factors above the elbow.
+
+'generate normal dataset'
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+data=data.frame(w,x,y,z)
+
+## first method
+## prcomp() function built into R to perform principal components analysis.
+# perform PCA
+pca_results <- prcomp(data, scale = TRUE)
+
+# Perform the screeplot test
+#calculate total variance explained by each principal component
+
+var_explained = pca_results$sdev^2 / sum(pca_results$sdev^2)
+
+#create scree plot
+library(ggplot2)
+
+qplot(c(1:4), var_explained) + 
+  geom_line() + 
+  xlab("Principal Component") + 
+  ylab("Variance Explained") +
+  ggtitle("Scree Plot") +
+  ylim(0, 1)
+
+print(var_explained) ##the numbers you get represent the percentage from the total variation
+
+##second method
+
+KGC <- eigen(cor(data)) # get eigenvalues
+KGC$values
+
+scree(data, pc=FALSE)  # Use pc=FALSE for factor analysis
