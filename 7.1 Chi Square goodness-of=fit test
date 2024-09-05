@@ -1,0 +1,23 @@
+#Chi Square r one sample Chi square compares the proportion of cases from a sample 
+# with hypothesised values or those previously from a comparison population. Also, is 
+# used to determine whether or not a categorical variable follows a hypothesized distribution.
+#Example: To test whether the number of smokers in the data is equivalent to that reported in 
+#the literature from a previous larger natiowide study (20%). Ex2.all is needed is one categorical 
+#variable and a specific proportion against which you wish to test observed frequencies.
+# You need one categorical variable with two or more categories (smoker yes/no)
+# a hypothesised proportion proportion (20% /80%)
+
+
+
+
+
+#data creation
+observed <- c(50, 60, 40, 47, 53) 
+expected_proportion <- c(.2, .2, .2, .2, .2) #must add up to 1
+
+# calculate Chi square 
+
+res=chisq.test(observed, expected_proportion) 
+
+# printing the p-value
+res$p.value
