@@ -1,0 +1,29 @@
+#The Tukey HSD test allows for all possible pairwise comparisons 
+#while keeping the family-wise error rate low.
+
+
+#One of the best-known members of the post-hoc world is Tukey’s HSD 
+#(Honest Significant Difference) test. This test performs all possible
+#pairwise comparisons among the sample means.
+
+#So what’s the story? The story is that Tukey’s test adjusts for the number
+#of sample means and compares the differences not to the t-distribution but 
+#to the Studentized Range distribution. The overall effect is to make it more 
+#difficult to reject the null hypothesis about any pairwise comparison than it 
+#would be if you compare the difference against the t-distribution.
+
+#create data
+set.seed(1045)
+data <- data.frame(group = rep(c("P1", "P2", "P3"), each = 40),
+                   values = c(rnorm(40, 0, 3),rnorm (40, 0, 6),rnorm (40, 1, 5)))
+head(data)
+
+#create ANOVA model
+model <- aov(values~group, data=data)
+summary(model)
+
+#perform Tukey HSD Test.
+TukeyHSD(model, conf.level=.95)
+
+#create graph
+plot(TukeyHSD(model, conf.level=.95), las = 2)
