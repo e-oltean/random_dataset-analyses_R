@@ -1,0 +1,26 @@
+#Levene’s test is an inferential statistic used to check if the variances of a variable 
+#obtained for two or more groups are equal or not when data comes from a non-normal distribution. 
+
+#assumptions for parametric tests
+
+#level of measurement -variables should be as much as possible continuous random sampling
+#independence of observations
+#normal distribution of population from which samples are taken
+#homogeneity of variance-samples are taken from populations of equal variances.
+#to test this Levene's test for equality. You should get that the test is not significant (significance level must be greater than 0.5
+  
+#generate normal dataset'
+x=rnorm(100)
+y=rnorm(100)
+z=rnorm(100)
+w=rnorm(100) + x + y + z
+data=data.frame(w,x,y,z)
+
+#import package
+# Import required package
+
+install.packages('car', dependencies=TRUE)
+library(car)
+
+#compute Levene Test
+levene.test(w ~ x, data)
