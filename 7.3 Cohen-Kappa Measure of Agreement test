@@ -1,0 +1,24 @@
+#Cohen-Kappa Measure of Agreement uses categorical variables (with equal number of categories)
+#and assesses in medical literature inter-rater agreement (diagnoses from two different clinicians)
+#or the consistency of two different diagnostic tests (new developed tests versus a gold standard)
+#who each classify items into mutually exclusive categories.. Ex of research consistency of the 
+#diagnostic classifications of san organisation. Ex2: degree of agreement btw two measures of 
+#depression in a sample of postnatal women. Rather than just calculating the percentage of items 
+#that the raters agree on, Cohen’s Kappa attempts to account for the fact that the raters may happen
+#to agree on some items purely by chance. The value for Cohen’s Kappa always ranges between 0 and 
+#1where 0 indicates no agreement between the two raters 1 indicates perfect agreement between the two raters 
+
+#define vector of ratings for both raters
+
+ratings <- data.frame(
+  Rater1 = c(1, 2, 3, 2, 1),
+  Rater2 = c(1, 2, 3, 1, 1)
+)
+
+# install psych package
+install.packages('irr')
+library(irr)
+
+#calculate Cohen's Kappa
+kappa_result <- kappa2(ratings, weight = "unweighted")
+print(kappa_result)
