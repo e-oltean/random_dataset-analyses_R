@@ -1,0 +1,33 @@
+#Effect size
+
+#Effect sizecomputes if difference is statistically significant. With large samples even the slightest
+#difference can become significant. This does not mean that it has any practical or theoretical significance.
+#One way to assess the importance is to compute effect size (or strength of association).
+
+#Cohen's d test
+#In statistics, we often use p-values to determine if there is a statistically significant difference between 
+#the mean of two groups. However, while a p-value can tell us whether or not there is a statistically significant
+#difference between two groups, an effect size can tell us how large this difference actually is.
+
+#Cohen’s d present difference between groups in standard deviation units.
+
+#A d of 0.5 indicates that the two group means differ by 0.5 standard deviations.
+#A d of 1 indicates that the group means differ by 1 standard deviation.
+#A d of 2 indicates that the group means differ by 2 standard deviations.
+
+#Dataset Creation
+
+x1=rnorm(100, mean = 50, sd = 200)
+y1=rnorm(100, mean = 50, sd = 200)
+z1= rnorm(100, mean = 50, sd = 200)
+w1=rnorm(100, mean = 50, sd = 200) + x1 + y1 + z1
+dfr_nrm=data.frame(x1,y1,z1,w1)
+
+#install and load the lsr package
+install.packages('lsr')
+library(lsr)
+
+#compute Cohen's d test
+cohensD(x1, y1)
+
+'
