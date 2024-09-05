@@ -1,0 +1,28 @@
+# In the case where the data in non-normal,
+# we will employ the non-parametric ests
+# in order to tackle the rdifferences
+# between two groups (i.e. 2 continous varibles)
+
+#Wilcoxon Signed Rank Test  or Wilcoxon matched pairs 
+#Signed Rank Testis designed for use with repeated measures,
+#has as parametric equivalent paired samples t -test. 
+#It converts scores into ranks at two different times.
+
+# generate non-normal data
+
+x=sample(1:100, 100, replace=TRUE)
+y=sample(1:100, 100, replace=TRUE)
+z= sample(1:100, 100, replace=TRUE)
+w=sample(1:100, 100, replace=TRUE) + x + y + z
+dfr=data.frame(x,y,z,w)
+
+# installation of non-parametric package
+
+install.packages('np')
+library(np)
+
+# Wilcoxon Signed Rank Test is used to test two independent groups. 
+#This is the equivalent of parametric pairwise t-test
+
+wilcox.test(x,y,paired=TRUE)
+
