@@ -1,0 +1,35 @@
+#In the case where the data in non-normal,
+##we will employ the non-parametric ests
+# in order to tackle the rdifferences
+# between two groups (i.e. 2 continous varibles).
+
+#is used to test differences btw two independent groups
+#on a continous measure. It is the non-parametric alternative of t-test.
+#But instead of comparing the mean of the groups actually compares medians . 
+#It converts the scores on the continous variable to ranks across the two groups.
+#Then evaluates whether the ranks for the two groups differ significantly. As the 
+#score are converted to ranks, the actualk distribution of the scores does not mattet. 
+#You need two variables of which one categorical with two groups (ex sex) and a 
+#continuous variable (ex total self-esteem). Ex researcj questions: do female/male 
+#differ in their level of esteem, ? Do mles have higher esteem?
+
+# generate non-normal data
+
+x=sample(1:100, 100, replace=TRUE)
+y=sample(1:100, 100, replace=TRUE)
+z= sample(1:100, 100, replace=TRUE)
+w=sample(1:100, 100, replace=TRUE) + x + y + z
+dfr=data.frame(x,y,z,w)
+
+# installation of non-parametric package
+
+install.packages('np')
+library(np)
+
+# Mann-Whitney U test or Wilcoxon rank sum test with continuity correction
+#is used to test two independent groups. This is the equivalent of independent 
+# parametric independent t-test
+
+wilcox.test(w,x)
+wilcox.test(w,y)
+wilcox.test(w,z)
