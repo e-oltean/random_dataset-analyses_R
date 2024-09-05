@@ -1,0 +1,18 @@
+#explores the relationship btw two categorical variables with two or 
+#more categories. This compares the osberved frequencies or proportion
+#of cases in each category with expected values if there was no association
+#btw two variables being measured. Ex of categories male/female, smoker/non-smoker.
+#Ex of research: is there any association btw gender and smoking? Are males more likely smokers?
+
+#create table
+data <- matrix(c(120, 90, 40, 110, 95, 45), ncol=3, byrow=TRUE)
+colnames(data) <- c("Left","Right","Ind")
+rownames(data) <- c("Male","Female")
+data <- as.table(data)
+
+#Perform Chi-Square Test of Independence
+chisq.test(data)
+
+#Since the p-value (0.6492) of the test is not less than 0.05, we fail to reject 
+#the null hypothesis. This means we do not have sufficient evidence to say that 
+#there is an association between variables.
