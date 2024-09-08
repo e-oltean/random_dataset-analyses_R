@@ -1,0 +1,14 @@
+#Friedmann test
+#is non-parametric to one-way repeateof variance d measure analysis. 
+#The Friedman Test is a non-parametric alternative to the Repeated Measures ANOVA. 
+#It is used to determine whether or not there is a statistically significant difference
+#between the means of three or more groups in which the same subjects show up in each group.
+
+#create data
+data <- data.frame(person = rep(1:5, each=4),
+                   drug = rep(c(1, 2, 3, 4), times=5),
+                   score = c(30, 28, 16, 34, 14, 18, 10, 22, 24, 20,
+                             18, 30, 38, 34, 20, 44, 26, 28, 14, 30))
+
+#perform Friedman Test
+friedman.test(y=data$score, groups=data$drug, blocks=data$person)
