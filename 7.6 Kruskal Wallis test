@@ -1,0 +1,17 @@
+
+#Kruskal Wallis H test 
+#is non-parametric alternative a one way. It compares score or continuous 
+#variables. It is similar to MannWhitney test but it is for three or more 
+#groups. This is between group, so scores are converted to ranks and the 
+#mean rank for each group is compared. Research ex: is there a difference 
+#in optimism across three age levels. You need two variables, one categorical 
+#variable (ex. Three different age levels and one continuous variable.
+
+#create data frame
+df <- data.frame(group=rep(c('A', 'B', 'C'), each=10),
+                 height=c(7, 14, 14, 13, 12, 9, 6, 14, 12, 8,
+                          15, 17, 13, 15, 15, 13, 9, 12, 10, 8,
+                          6, 8, 8, 9, 5, 14, 13, 8, 10, 9))
+
+#perform Kruskal-Wallis Test 
+kruskal.test(height ~ group, data = df) 
