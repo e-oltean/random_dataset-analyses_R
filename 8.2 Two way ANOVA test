@@ -1,0 +1,25 @@
+#Two way means there are two independent variables and between groups mean there are
+#different people in each group. In one way ANOVA example was about optimism level for 
+#three age groups. But it is for both males and females. Two way anova will have two 
+#independent variables (age groupand sex).
+
+#create data frame
+data <- data.frame(gender = rep(c("Male", "Female"), each = 30),
+                   exercise = rep(c("None", "Light", "Intense"), each = 10, times = 2),
+                   weight_loss = c(runif(10, -3, 3), runif(10, 0, 5), runif(10, 5, 9),
+                                   runif(10, -4, 2), runif(10, 0, 3), runif(10, 3, 8)))
+
+#load dplyr package
+library(dplyr)
+
+#find mean and standard deviation of weight loss for each treatment group
+data %>%
+  group_by(gender, exercise) %>%
+  summarise(mean = mean(weight_loss),
+            sd = sd(weight_loss))
+
+#fit the two-way ANOVA model
+model=aov(weight_loss ~ gender * exercise, data = data)
+
+#view the model output
+summary(model)
