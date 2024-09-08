@@ -1,0 +1,26 @@
+#compares the mean score of more than two groups.
+#Analysis of variance compares the variance between 
+#the different groups (due to the independent variables)
+#with variability within each groups (due to chance. 
+#An F ratio represents the ratio btw groups divided 
+#by the variances within groups.
+
+#create data frame
+data <- data.frame(program = rep(c("A", "B", "C"), each = 30),
+                   weight_loss = c(runif(30, 0, 3),
+                                   runif(30, 0, 5),
+                                   runif(30, 1, 7)))
+#load dplyr package
+library(dplyr)
+
+#find mean and standard deviation of weight loss for each treatment group
+data %>%
+  group_by(program) %>%
+  summarise(mean = mean(weight_loss),
+            sd = sd(weight_loss))
+
+#fit the one-way ANOVA model
+model <- aov(weight_loss ~ program, data = data)
+
+#view the model output
+summary(model)
