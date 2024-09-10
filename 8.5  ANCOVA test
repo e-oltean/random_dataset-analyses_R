@@ -1,0 +1,67 @@
+#is an extension of analysis of variance that allows to test the differences between variables 
+#while statistically controlling for an additionally continuous variable. The additional variable
+#(called covariate) is a variable that you suspect that might be influencing the dependent variable. 
+
+#create dataset
+data <- data.frame(technique = rep(c("A", "B", "C"), each = 30),
+                   current_grade = runif(90, 65, 95),
+                   exam = c(runif(30, 80, 95), runif(30, 70, 95), runif(30, 70, 90)))
+
+
+#load dplyr
+library(dplyr)
+
+data %>%
+  group_by(technique) %>%
+  summarise(mean_grade = mean(current_grade),
+            sd_grade = sd(current_grade),
+            mean_exam = mean(exam),
+            sd_exam = sd(exam))
+#Check the Model Assumptions
+#To verify that the covariate and the treatment are independent, 
+#we can run an ANOVA using current grade as the response variable 
+#and studying technique as the predictor variable:
+
+#fit anova model
+anova_model <- aov(current_grade ~ technique, data = data)
+#view summary of anova model
+summary(anova_model)
+
+#to verify that there is homogeneity of variance among the groups, 
+#we can conduct Levene’s Test:
+
+#load car library to conduct Levene's Test
+install.packages("car")
+library(car)
+
+#conduct Levene's Test
+leveneTest(exam~technique, data = data)
+
+#Fit the ANCOVA Model
+
+#load car library
+library(car)
+
+#fit ANCOVA model
+ancova_model <- aov(exam ~ technique + current_grade, data = data)
+
+#view summary of model
+aov(ancova_model, type="III") 
+
+#Although the ANCOVA results told us that studying technique had a statistically significant
+#effect on exam scores, we need to run post hoc tests to actually find out which studying techniques 
+#differ from each other.To do so, we can use the glht() function within the multcomp package in R to
+#perform Tukey’s Test for multiple comparisons:
+
+#load the multcomp library
+install.packages("multcomp")
+library(multcomp)
+
+#fit the ANCOVA model
+ancova_model <- aov(exam ~ technique + current_grade, data = data)
+
+#define the post hoc comparisons to make
+postHocs <- glht(ancova_model, linfct = mcp(technique = "Tukey"))
+
+#view a summary of the post hoc comparisons
+summary(postHocs)
