@@ -1,0 +1,17 @@
+#Residual Mean Squared Error
+#create data
+make_poly_data = function(sample_size = 11) {
+  x = seq(0, 10)
+  y = 3 + x + 4 * x ^ 2 + rnorm(n = sample_size, mean = 0, sd = 20)
+  data.frame(x, y)
+}
+set.seed(1234)
+poly_data = make_poly_data()
+
+#fit two models one big , one smaller
+fit_quad = lm(y ~ poly(x, degree = 2), data = poly_data)
+fit_big = lm(y ~ poly(x, degree = 8), data = poly_data)
+
+#calculate mean squared error
+sqrt(mean(resid(fit_quad) ^ 2))
+sqrt(mean(resid(fit_big) ^ 2))
