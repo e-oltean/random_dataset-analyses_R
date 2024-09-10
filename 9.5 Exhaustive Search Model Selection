@@ -1,0 +1,40 @@
+#Backward, forward, and stepwise search are all useful, but do have an obvious
+#issue. By not checking every possible model, sometimes they will miss the best
+#possible model. With an extremely large number of predictors, sometimes this is
+#necessary since checking every possible model would be rather time consuming,
+#even with current computers.
+
+#install farwaway package
+install.packages('faraway')
+library(faraway)
+
+#install leaps package
+install.packages('leaps')
+library(leaps)
+
+#However, with a reasonably sized dataset, it isn’t too difficult to check all 
+#pos  sible models. To do so, we will use the regsubsets() function in the R package
+#leaps.
+
+all_hipcenter_mod = summary(regsubsets(hipcenter ~ ., data = seatpos))
+
+W#e’ll now look at the information stored in all_hipcenter_mod.
+
+all_hipcenter_mod$which
+#Using $which gives us the best model, according to RSS, for a model of each
+#possible size, in this case ranging from one to eight predictors. For example the
+#best model with four predictors (p = 5) would use Age, HtShoes, Thigh, and Leg.
+
+#compute RSS
+all_hipcenter_mod$rss 
+
+#compute Adjusted R squared
+all_hipcenter_mod$adjr2
+
+#We can then extract the predictors of that model.
+all_hipcenter_mod$which[best_r2_ind, ]
+
+#We can then extract the predictors of the model with the best AIC.
+best_aic_ind = which.min(hipcenter_mod_aic)
+all_hipcenter_mod$which[best_aic_ind,]
+
