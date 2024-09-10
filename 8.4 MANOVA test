@@ -1,0 +1,33 @@
+
+#is an extension of analysis of variance for more than one dependent variable. 
+#These dependent variables should be related in some way or should be some reason
+#to consider them together.  MANOVA compares the groups and shows whether the mean 
+#differences between the groups on the combination of dependent variables are likely 
+#to have occurred by chance. To do this, MANOVA creates a new summary dependent variable, 
+#which is a linear combination of each of your dependent variable. Considering each variable
+#separately increases the likelihood of getting  a Type I error.
+
+#You need: one categorical independent variable (ex: sex) and two or more continuous variables.
+#What it does: compares two or more groups in terms of their means on a group of dependent variablkes.
+#Tests the null hypothesis that the population means on a set of dependent variables do not vary across
+#different levels of a factor or a grouping variable.
+
+
+data <- iris
+
+install.packages("dplyr")
+set.seed(123)
+dplyr::sample_n(data, 10) # extract a sample from the data
+
+#create variables
+sepl <- iris$Sepal.Length
+petl <- iris$Petal.Length
+
+#MANOVA test
+
+result.manova <- manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris)
+summary(result.manova)
+
+summary.aov(result.manova)
+
+#The two variables are extremely significantly different among Species.
