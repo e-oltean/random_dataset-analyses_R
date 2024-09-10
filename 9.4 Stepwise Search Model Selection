@@ -1,0 +1,24 @@
+#Stepwise search checks going both backwards and forwards at every step. It
+#considers the addition of any variable not currently in the model, as well as the
+#removal of any variable currently in the model.
+
+#install farwaway package
+install.packages('faraway')
+library(faraway)
+
+#create model
+hipcenter_mod_start = lm(hipcenter ~ 1, data = seatpos)
+
+#stepwise search
+hipcenter_mod_both_aic = step(
+  hipcenter_mod_start,
+  scope = hipcenter ~ Age + Weight + HtShoes + Ht + Seated + Arm + Thigh + Leg,
+  direction = "both")
+
+# returns both p and AIC
+extractAIC(hipcenter_mod_both_aic) 
+
+#compute Adjunct R Squred
+summary(hipcenter_mod_both_aic)$adj.r.squared
+
+
