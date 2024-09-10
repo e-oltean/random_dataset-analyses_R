@@ -1,0 +1,24 @@
+#Forward selection is the exact opposite of backwards selection. Here we tell
+#R to start with a model using no predictors, that is hipcenter ~ 1, then
+#at each step R will attempt to add a predictor until it finds a good model
+#or reaches hipcenter ~ Age + Weight + HtShoes + Ht + Seated + Arm +
+ # Thigh + Leg.
+
+#install farwaway package
+install.packages('faraway')
+library(faraway)
+
+#create model
+hipcenter_mod_start = lm(hipcenter ~ 1, data = seatpos)
+
+#forwaard search
+hipcenter_mod_forw_aic = step(
+  hipcenter_mod_start,
+  scope = hipcenter ~ Age + Weight + HtShoes + Ht + Seated + Arm + Thigh + Leg,
+  direction = "forward")
+
+# returns both p and AIC
+extractAIC(hipcenter_mod_forw_aic) 
+
+#compute Adjunct R Squred
+summary(hipcenter_mod_forw_aic)$adj.r.squared
