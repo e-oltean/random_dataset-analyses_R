@@ -1,0 +1,28 @@
+#combines between subjects design (comparing two or more different groups) and 
+#within subjects or repeated measures design (one or more groups exposed to different conditions).
+#There are three variables involved: one categorical independent between subjects 
+#variable with two or more levels (group1/group), one categorical independent within-subjects
+#with two or more levels (time1/time 2…), one continuous dependent variable.
+#What it does: it tests if there are main effects for each of the independent variables 
+#and whether the interaction between variables.
+
+subject    <- as.factor(c(1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10))
+music      <- c('Classical','Rock','Classical','Rock','Classical','Rock','Classical',
+                'Rock','Classical','Rock','Classical','Rock','Classical','Rock','Classical',
+                'Rock','Classical','Rock','Classical','Rock')
+room.type  <- c('Light','Light','Light','Light','Light','Light','Light','Light','Light',
+                'Light','No Light','No Light','No Light','No Light','No Light','No Light',
+                'No Light','No Light','No Light', 'No Light')
+heart.rate <- c(78,60,85,75,99,94,75,84,100,76,90,109,99,94,113,92,91,88,89,90)
+df <- data.frame(subject,music,room.type,heart.rate)
+print(df)
+
+aov_mixed <- aov(heart.rate ~ room.type*music + Error(subject/room.type), data=df)
+summary(aov_mixed)
+
+#The output informs us that, on average, the subjects that listened to classical 
+#music did not significantly differ () from those that listened to rock music. 
+#However, there is, on average, a significant difference () between each of the 
+#subject’s heart rate when put in a room with or without light. Additionally, 
+#since the interaction term is not significant (), we can use the additive 
+#(no interaction) model.
