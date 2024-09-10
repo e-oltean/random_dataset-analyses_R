@@ -1,0 +1,20 @@
+#Backward selection procedures start with all possible predictors in the model,
+#then considers how deleting a single predictor will effect a chosen metric. Let’s
+#try this on the seatpos data. We will use the step() function in R which by
+#default uses AIC as its metric of choice.
+
+install.packages("faraway")
+library(faraway)
+
+#create model
+hipcenter_mod = lm(hipcenter ~ ., data = seatpos)
+
+#backward search
+hipcenter_mod_back_aic = step(hipcenter_mod, direction = "backward")
+
+# returns both p and AIC
+extractAIC(hipcenter_mod) 
+
+#compute Adjunct R Squred
+summary(hipcenter_mod)$adj.r.squared
+
